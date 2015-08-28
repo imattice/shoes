@@ -15,15 +15,18 @@
             <p>Currently, there are no stores that are selling shoes.</p>
         {% endif %}
 
+
         <form action='/add_stores' method='post'>
             <h2>Add a New Store</h2>
 
             <label for='store_name'><strong>Store Name:</strong></label>
-            <input id='store_name' name='store_name' type='text'>
+            <input id='store_name' name='store_name' type='text' required>
 
             <button type='submit'>Add Store</button>
         </form>
         <br>
+
+        
         <form action='/clear_stores' method='post'>
             <button type='submit'>Clear all stores</button>
         </form>

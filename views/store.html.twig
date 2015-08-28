@@ -19,6 +19,7 @@
         {% endif %}
 
 
+        {% if brands is not empty %}
         <h4>Add a brand:</h4>
         <form action="/add_brand" method="post">
             <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
@@ -31,23 +32,25 @@
             <button type="submit">Add brand</button>
         </form>
         <br>
+        {% else %}
+        <p>There are currently no brands available. You can add a new brand <a href='add_brand'>here</a>.
+        {% endif %}
 
 
         <h4>Edit this Store Name:</h4>
-            <form action="/edit_store/{{ store.getId }}/edit"
-                method="post">
+            <form action="/store/{{ store.getId }}" method="post">
                 <input name="_method" type="hidden" value="patch">
-
-                <label for="store_name">
-                    New store name:
-                    </label>
-                <input id="store_name" name="store_name" type="text"
-                    placeholder="NEW NAME">
-
+                <label for="store_name">New store name:</label>
+                <input id="store_name" name="store_name" type="text" placeholder="New Name" required>
                 <button type="submit">Submit</button>
             </form>
         <br>
         <hr>
+
+        <form action="/store/{{ store.getId }}" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Delete This Store</button>
+        </form>
 
 
         <a href = '/'>Home</a>

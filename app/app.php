@@ -61,6 +61,20 @@
     return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => Brand::getAll()));
     });
 
+    //allows user to update this store name
+    $app->patch("/store/{id}", function($id) use ($app) {
+        $store_name = $_POST['store_name'];
+        $store = Store::find($id);
+        $store->update($store_name);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => Brand::getAll()));
+        });
+
+    //allows user to delete this store
+    $app->delete('/store/{id}', function($id) use ($app){
+        $store = Store::find($id);
+        $store->deleteOne();
+        return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
+    });
 
 //all brands page
     //directs to a list of all brands
