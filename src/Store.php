@@ -35,6 +35,12 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+//updates the name of a saved store
+        function update ($new_store_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE stores_table SET name = '{$new_store_name}' WHERE id = {$this->getId()};");
+        }
+
 //retrieves all saved stores
         static function getAll()
         {
