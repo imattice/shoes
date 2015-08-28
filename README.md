@@ -11,12 +11,14 @@ This program will list which shoe brands a shoe store carries.  The user can als
 
 ## Setup
 
-- clone this repository
-- Run $ composer install in project folder
-- Start mySQL server
-- Run phpmyadmin and import database from folder
-- Start php server in web directory folder
-- navigate web browser to localhost:8000
+Clone repository from GitHub.
+Run $ composer install.
+Run $ mysql.server start
+Run $ mysql -uroot -proot
+Run $ apachectl start
+Import database hair_salon to mysql by logging on to localhost:8080/phpmyadmin and clicking the import button
+Start php server in web directory.
+Direct browser to localhost:8000/
 
 
 ## Technologies Used
