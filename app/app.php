@@ -25,6 +25,8 @@
         return $app['twig']->render('home.html.twig');
     });
 
+
+
 //all stores page
     //directs to all_stores page
     $app->get('all_stores', function() use ($app)
@@ -38,8 +40,19 @@
         $store_name = $_POST['store_name'];
         $store = new Store($store_name);
         $store->save();
+
         return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
     });
+
+    //allows user to clear all stores from database
+    $app->post("/clear_stores", function() use($app)
+    {
+        Store::deleteAll();
+
+        return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
+    });
+
+
 
 //all brands page
     //directs to a list of all brands
