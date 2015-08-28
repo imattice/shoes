@@ -49,6 +49,22 @@
             return $brands;
         }
 
+
+//function for finding a specific brand
+        static function find($search_id)
+        {
+            $found_brand = null;
+            $brands = Brand::getAll();
+            foreach($brands as $brand) {
+                $id = $brand->getId();
+                if ($id == $search_id) {
+                    $found_brand = $brand;
+                }
+            }
+            return $found_brand;
+        }
+
+
 //deletes all saved brands
         static function deleteAll()
         {
@@ -83,7 +99,7 @@
                 //pushes the newly created store objects to the empty array
                 array_push($stores, $new_store);
             }
-            
+
             //returns the newly filled array with the resulting store objects
             return $stores;
         }

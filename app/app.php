@@ -101,6 +101,15 @@
         return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+//specific brand page
+    //directs to brand page
+    $app->get('brand/{id}', function($id) use($app)
+    {
+        $brand = Brand::find($id);
+    return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => Store::getAll()));
+    });
+
+
 
     return $app;
 ?>
