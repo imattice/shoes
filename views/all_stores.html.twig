@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>All Stores</title>
+    </head>
+    <body>
+
+        {% if stores is not empty %}
+            <p>Here are all of the availalbe stores that sell shoes:</p>
+            <ul>
+                {% for store in stores %}
+                <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Currently, there are no stores that are selling shoes.</p>
+        {% endif %}
+
+        <a href = '/'>Home</a>
+    </body>
+</html>

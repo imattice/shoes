@@ -24,5 +24,11 @@
         return $app['twig']->render('home.html.twig');
     });
 
+    //directs to a list of all stores
+    $app->get('all_stores', function() use ($app)
+    {
+        return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
+    });
+
     return $app;
 ?>
