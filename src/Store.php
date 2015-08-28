@@ -43,10 +43,16 @@
             foreach($returned_stores as $store) {
                 $store_name = $store['name'];
                 $id = $store['id'];
-                $new_store = new Store ($store, $id);
+                $new_store = new Store ($store_name, $id);
                 array_push($stores, $new_store);
             }
             return $stores;
+        }
+
+//deletes all saved stores
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores_table;");
         }
 
     }
