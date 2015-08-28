@@ -113,6 +113,45 @@
             $test_store->deleteOne();
             $this->assertEquals([$test_store2], Store::getAll());
         }
+
+//test for addBrand()
+        function test_addBrand()
+        {
+            $store_name = 'Payless Shoes';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand);
+
+            $this->assertEquals($test_store->getBrand(), [$test_brand]);
+        }
+
+//test for getBrand()
+        function test_getBrand()
+        {
+            $store_name = 'Payless Shoes';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $brand_name2 = 'Adidas';
+            $test_brand2 = new Brand($brand_name2);
+            $test_brand2->save();
+
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
+            $result = $test_store->getBrand();
+
+
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
     }
 
 ?>
