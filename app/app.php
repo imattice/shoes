@@ -30,5 +30,11 @@
         return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
     });
 
+    //directs to a list of all brands
+    $app->get('all_brands', function() use ($app)
+    {
+        return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
     return $app;
 ?>
