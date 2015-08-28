@@ -134,7 +134,7 @@
 
             $test_store->addBrand($test_brand);
 
-            $this->assertEquals($test_store->getBrand(), [$test_brand]);
+            $this->assertEquals($test_store->getBrands(), [$test_brand]);
         }
 
 
@@ -155,7 +155,7 @@
 
             $test_store->addBrand($test_brand);
             $test_store->addBrand($test_brand2);
-            $result = $test_store->getBrand();
+            $result = $test_store->getBrands();
 
 
             $this->assertEquals([$test_brand, $test_brand2], $result);
