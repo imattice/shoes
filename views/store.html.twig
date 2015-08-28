@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>{{ store.getStoreName }}</title>
+</head>
+    <body>
+        <h1><center>{{ store.getStoreName }}</center></h1>
+        <hr>
+
+
+        {% if brands is not empty %}
+            <p>Here are the brands available at {{ store.getStoreName }}:</p>
+            <ul>
+                {% for brand in brands %}
+                    <li>{{ brand.getBrandName }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>This store is not currently carrying any shoe brands.</p>
+        {% endif %}
+
+
+        <h4>Add a brand:</h4>
+        <form action="/add_brand" method="post">
+            <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+            <label for = "brand_id">Select a brand:</label>
+            <select id='brand_id' name='brand_id' type='text'>
+                {% for brand in brands %}
+                    <option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add brand</button>
+        </form>
+        <br>
+
+
+        <h4>Edit this Store Name:</h4>
+            <form action="/edit_store/{{ store.getId }}/edit"
+                method="post">
+                <input name="_method" type="hidden" value="patch">
+
+                <label for="store_name">
+                    New store name:
+                    </label>
+                <input id="store_name" name="store_name" type="text"
+                    placeholder="NEW NAME">
+
+                <button type="submit">Submit</button>
+            </form>
+        <br>
+        <hr>
+
+
+        <a href = '/'>Home</a>
+
+
+    </body>
+</html>

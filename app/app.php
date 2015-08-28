@@ -53,6 +53,14 @@
     });
 
 
+//specific store page
+    //directs to store page
+    $app->get('store/{id}', function($id) use($app)
+    {
+        $store = Store::find($id);
+    return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => Brand::getAll()));
+    });
+
 
 //all brands page
     //directs to a list of all brands
