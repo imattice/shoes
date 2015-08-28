@@ -23,6 +23,7 @@
             //Brand::deleteAll();
         }
 
+//test for save()
         function test_save()
         {
             $store_name = 'Payless Shoes';
@@ -34,7 +35,7 @@
             $this->assertEquals($test_store, $result[0]);
         }
 
-//test for get all function
+//test for getAll()
         function test_getAll()
         {
             $store_name = 'Payless Shoes';
@@ -47,6 +48,23 @@
 
             $result = Store::getAll();
             $this->assertEquals([$test_store, $test_store2], $result);
+        }
+
+//test for deleteAll()
+        function test_deleteAll()
+        {
+            $store_name = 'Payless Shoes';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name2 = 'Rogans Shoes';
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            Store::deleteAll();
+            $result = Store::getAll();
+
+            $this->assertEquals([], $result);
         }
     }
 

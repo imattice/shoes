@@ -35,7 +35,7 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-//function for retrieving all saved stores
+//retrieves all saved stores
         static function getAll()
         {
             $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores_table;");
