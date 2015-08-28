@@ -23,6 +23,25 @@ This program will list which shoe brands a shoe store carries.  The user can als
 
 PHP, phpunit, Silex, Twig, HTML, CSS, Bootstrap, Symfony, MySQL
 
+## MySQL log
+
+mysql> CREATE DATABASE shoes;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE shoes;
+Database changed
+
+mysql> CREATE TABLE brands_table (id serial PRIMARY KEY, name VARCHAR (255))
+    -> ;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> CREATE TABLE stores_table (id serial PRIMARY KEY, name VARCHAR (255))
+    -> ;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id INT, store_id INT);
+Query OK, 0 rows affected (0.08 sec)
+
 ### Legal
 
 
