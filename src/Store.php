@@ -11,11 +11,13 @@
             $this->id = $id;
         }
 
+
 //setters
         function setStoreName($new_store_name)
         {
             $this->store_name = (string) $new_store_name;
         }
+
 
 //getters
         function getStoreName()
@@ -28,6 +30,7 @@
             return $this->id;
         }
 
+
 //saves an instance of Store to the database
         function save()
         {
@@ -35,11 +38,13 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+
 //updates the name of a saved store
         function update ($new_store_name)
         {
             $GLOBALS['DB']->exec("UPDATE stores_table SET name = '{$new_store_name}' WHERE id = {$this->getId()};");
         }
+
 
 //deletes a single instance of Store
         function deleteOne()
@@ -47,11 +52,13 @@
             $GLOBALS['DB']->exec("DELETE FROM stores_table WHERE id = {$this->getId()};");
         }
 
+
 //adds a brand to a specific store
     function addBrand($brand)
    {
        $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
    }
+
 
 //retrieves all brands assodicated with a specifc store
    function getBrands()
@@ -72,6 +79,7 @@
        return $brands;
    }
 
+
 //retrieves all saved stores
         static function getAll()
         {
@@ -85,6 +93,7 @@
             }
             return $stores;
         }
+
 
 //deletes all saved stores
         static function deleteAll()

@@ -31,10 +31,12 @@
             </select>
             <button type="submit">Add brand</button>
         </form>
+
         {% else %}
-        <p>There are currently no brands available. You can add a new brand <a href='add_brand'>here</a>.
+        <p>There are currently no brands available. </p>
         {% endif %}
         <br>
+
 
         <h4>Edit this Store Name:</h4>
             <form action="/store/{{ store.getId }}" method="post">

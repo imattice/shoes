@@ -22,6 +22,7 @@
             Brand::deleteAll();
         }
 
+
 //test for save()
         function test_save()
         {
@@ -33,6 +34,7 @@
 
             $this->assertEquals($test_brand, $result[0]);
         }
+
 
 //test for getAll()
         function test_getAll()
@@ -50,6 +52,7 @@
             $this->assertEquals([$test_brand, $test_brand2], $result);
         }
 
+
 //test for find()
         function test_find()
         {
@@ -65,6 +68,7 @@
 
             $this->assertEquals($test_brand, $result);
         }
+
 
 //test for deleteAll()
         function test_deleteAll()
@@ -83,6 +87,7 @@
             $this->assertEquals([], $result);
         }
 
+
 //test for addStore()
         function test_addStore()
         {
@@ -98,6 +103,7 @@
 
             $this->assertEquals($test_brand->getStore(), [$test_store]);
         }
+
 
 //test for getStore()
         function test_getStore()

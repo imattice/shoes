@@ -23,6 +23,7 @@
             Brand::deleteAll();
         }
 
+
 //test for save()
         function test_save()
         {
@@ -34,6 +35,7 @@
 
             $this->assertEquals($test_store, $result[0]);
         }
+
 
 //test for getAll()
         function test_getAll()
@@ -50,6 +52,7 @@
 
             $this->assertEquals([$test_store, $test_store2], $result);
         }
+
 
 //test for deleteAll()
         function test_deleteAll()
@@ -68,6 +71,7 @@
             $this->assertEquals([], $result);
         }
 
+
 //test for find()
         function test_find()
         {
@@ -84,6 +88,7 @@
             $this->assertEquals($test_store, $result);
         }
 
+
 //test for update()
         function test_update()
         {
@@ -97,6 +102,7 @@
             $result = Store::getAll();
             $this->assertEquals("Paymore Shoes", $result[0]->getStoreName());
         }
+
 
 //test for deleteOne()
         function test_deleteOne()
@@ -114,6 +120,7 @@
             $this->assertEquals([$test_store2], Store::getAll());
         }
 
+
 //test for addBrand()
         function test_addBrand()
         {
@@ -129,6 +136,7 @@
 
             $this->assertEquals($test_store->getBrand(), [$test_brand]);
         }
+
 
 //test for getBrand()
         function test_getBrands()

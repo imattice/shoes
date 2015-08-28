@@ -18,6 +18,7 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+
 //landing page
     //renders homepage
     $app->get("/", function() use ($app)
@@ -74,11 +75,14 @@
     });
 
     //allows user to update this store name
-    $app->patch("/store/{id}", function($id) use ($app) {
-        $store_name = $_POST['store_name'];
+    $app->patch("/store/{id}", function($id) use ($app)
+    {
         $store = Store::find($id);
+        $store_name = $_POST['store_name'];
         $store->update($store_name);
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => Brand::getAll()));
+        $available_brands = $store->getBrands();
+
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'available_brands' => $available_brands, 'brands' => Brand::getAll()));
         });
 
     //allows user to delete this store
@@ -115,15 +119,28 @@
         return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+
 //specific brand page
     //directs to brand page
     $app->get('brand/{id}', function($id) use($app)
     {
         $brand = Brand::find($id);
-    return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => Store::getAll()));
+        $available_stores = $brand->getStores();
+
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'available_stores' => $available_stores, 'stores' => Store::getAll()));
     });
 
+    //allows user to add a store to this brand
+    $app->post('add_store/{id}', function($id) use($app)
+    {
+        $brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
 
+        $available_stores = $brand->getStores();
+
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'available_stores' => $available_stores, 'stores' => Store::getAll()));
+    });
 
     return $app;
 ?>

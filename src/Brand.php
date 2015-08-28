@@ -86,7 +86,7 @@
 
 
 //retrieves all stores associated with a specific instance of brand
-        function getStore()
+        function getStores()
         {
             //join statement which starts at brands_table and links each table by id's, one table at a time, resulting in a list of stores that are associated with this brand.  Needs a foreach loop to pull out the individual stores and recreate them into Store objects.
             $returned_stores = $GLOBALS['DB']->query("SELECT stores_table.* FROM brands_table
