@@ -131,7 +131,7 @@
         }
 
 //test for getBrand()
-        function test_getBrand()
+        function test_getBrands()
         {
             $store_name = 'Payless Shoes';
             $test_store = new Store($store_name);

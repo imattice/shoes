@@ -47,6 +47,31 @@
             $GLOBALS['DB']->exec("DELETE FROM stores_table WHERE id = {$this->getId()};");
         }
 
+//adds a Brand to a specific Store
+    function addBrand($brand)
+   {
+       $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
+   }
+
+//retrieves all Brands assodicated with a speficif store
+   function getBrand()
+   {
+
+       $returned_brands = $GLOBALS['DB']->query("SELECT brands_table.* FROM stores_table
+           JOIN brands_stores ON (stores_table.id = brands_stores.store_id)
+           JOIN brands_table ON (brands_stores.brand_id = brands_table.id)
+           WHERE stores_table.id = {$this->getId()};");
+
+       $brands = array();
+       foreach ($returned_brands as $brand) {
+           $brand_name = $brand['name'];
+           $id = $brand['id'];
+           $new_brand = new Brand($brand_name, $id);
+           array_push($brands, $new_brand);
+       }
+       return $brands;
+   }
+
 //retrieves all saved stores
         static function getAll()
         {
@@ -81,6 +106,8 @@
             }
             return $found_store;
         }
+
+
 
     }
 ?>
