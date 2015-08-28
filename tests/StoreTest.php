@@ -47,7 +47,7 @@
             $test_store2->save();
 
             $result = Store::getAll();
-            
+
             $this->assertEquals([$test_store, $test_store2], $result);
         }
 
@@ -82,6 +82,20 @@
             $result = Store::find($test_store->getId());
 
             $this->assertEquals($test_store, $result);
+        }
+
+//test for update()
+        function test_update()
+        {
+            $store_name = 'Payless Shoes';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $new_store_name = "Paymore Shoes";
+
+            $test_store->update($new_store_name);
+            $result = Store::getAll();
+            $this->assertEquals("Paymore Shoes", $result[0]->getStoreName());
         }
     }
 
