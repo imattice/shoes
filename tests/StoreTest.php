@@ -97,6 +97,22 @@
             $result = Store::getAll();
             $this->assertEquals("Paymore Shoes", $result[0]->getStoreName());
         }
+
+//test for deleteOne()
+        function test_deleteOne()
+        {
+            $store_name = 'Payless Shoes';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name2 = 'Rogans Shoes';
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+
+            $test_store->deleteOne();
+            $this->assertEquals([$test_store2], Store::getAll());
+        }
     }
 
 ?>
