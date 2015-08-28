@@ -6,7 +6,7 @@
     */
 
     require_once "src/Store.php";
-    //require_once "src/Brand.php";
+    require_once "src/Brand.php";
 
 // server signin
     $server = 'mysql:host=localhost;dbname=shoes_test';
@@ -20,7 +20,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
-            //Brand::deleteAll();
+            Brand::deleteAll();
         }
 
 //test for save()
