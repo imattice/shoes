@@ -83,5 +83,24 @@
         return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+    //allows user to add brands to page
+    $app->post('/add_brands', function() use ($app)
+    {
+        $brand_name = $_POST['brand_name'];
+        $brand = new Brand($brand_name);
+        $brand->save();
+
+        return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
+    //allows user to clear all brands from database
+    $app->post("/clear_brands", function() use($app)
+    {
+        Brand::deleteAll();
+
+        return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
+
     return $app;
 ?>

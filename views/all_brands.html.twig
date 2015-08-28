@@ -8,7 +8,7 @@
             <p>Here are all of the availalbe brands:</p>
             <ul>
                 {% for brand in brands %}
-                <li><a href="/brand/{{ brand.getId }}">{{ brand.getStoreName }}</li>
+                <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</li></a>
                 {% endfor %}
             </ul>
         {% else %}
@@ -21,7 +21,7 @@
 
             <label for='brand_name'><strong>Brand Name:</strong></label>
             <input id='brand_name' name='brand_name' type='text' required>
-            
+
             <button type='submit'>Add Brand</button>
         </form>
         <br>
