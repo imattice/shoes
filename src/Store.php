@@ -41,6 +41,12 @@
             $GLOBALS['DB']->exec("UPDATE stores_table SET name = '{$new_store_name}' WHERE id = {$this->getId()};");
         }
 
+//deletes a single instance of Store
+        function deleteOne()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores_table WHERE id = {$this->getId()};");
+        }
+
 //retrieves all saved stores
         static function getAll()
         {
