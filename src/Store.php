@@ -47,14 +47,14 @@
             $GLOBALS['DB']->exec("DELETE FROM stores_table WHERE id = {$this->getId()};");
         }
 
-//adds a Brand to a specific Store
+//adds a brand to a specific store
     function addBrand($brand)
    {
        $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
    }
 
-//retrieves all Brands assodicated with a speficif store
-   function getBrand()
+//retrieves all brands assodicated with a specifc store
+   function getBrands()
    {
 
        $returned_brands = $GLOBALS['DB']->query("SELECT brands_table.* FROM stores_table

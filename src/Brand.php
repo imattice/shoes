@@ -4,6 +4,7 @@
         private $id;
         private $brand_name;
 
+
 //Brand object constructor
         function __construct($brand_name, $id = null)
         {
@@ -11,11 +12,13 @@
             $this->id = $id;
         }
 
+
 //setters
         function setBrandName($new_brand_name)
         {
             $this->brand_name = (string) $new_brand_name;
         }
+
 
 //getters
         function getBrandName()
@@ -28,12 +31,14 @@
             return $this->id;
         }
 
+
 //saves an instance of Brand to the database
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO brands_table (name) VALUES ('{$this->getBrandName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
+
 
 //retrieves all saved brands
         static function getAll()
@@ -71,12 +76,14 @@
             $GLOBALS['DB']->exec("DELETE FROM brands_table;");
         }
 
+
 //links a specific instance of Brand to a specific instance of Store
         function addStore($store)
         {
             //goes into the join table and adds the id of the current instance of brand next to the store that is called into the function
             $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
         }
+
 
 //retrieves all stores associated with a specific instance of brand
         function getStore()
@@ -103,6 +110,7 @@
             //returns the newly filled array with the resulting store objects
             return $stores;
         }
+
 
     }
 ?>

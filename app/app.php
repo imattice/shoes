@@ -26,7 +26,6 @@
     });
 
 
-
 //all stores page
     //directs to all_stores page
     $app->get('all_stores', function() use ($app)
@@ -58,7 +57,20 @@
     $app->get('store/{id}', function($id) use($app)
     {
         $store = Store::find($id);
-    return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => Brand::getAll()));
+        $available_brands = $store->getBrands();
+    return $app['twig']->render('store.html.twig', array('store' => $store, 'available_brands' => $available_brands, 'brands' => Brand::getAll()));
+    });
+
+    //allows user to add a brand to this store
+    $app->post('add_brand/{id}', function($id) use($app)
+    {
+        $store = Store::find($_POST['store_id']);
+        $brand = Brand::find($_POST['brand_id']);
+        $store->addBrand($brand);
+
+        $available_brands = $store->getBrands();
+
+    return $app['twig']->render('store.html.twig', array('store' => $store, 'available_brands' => $available_brands, 'brands' => Brand::getAll()));
     });
 
     //allows user to update this store name
@@ -76,10 +88,12 @@
         return $app['twig']->render('all_stores.html.twig', array('stores' => Store::getAll()));
     });
 
+
 //all brands page
     //directs to a list of all brands
     $app->get('all_brands', function() use ($app)
     {
+
         return $app['twig']->render('all_brands.html.twig', array('brands' => Brand::getAll()));
     });
 

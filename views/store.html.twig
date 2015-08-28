@@ -7,10 +7,10 @@
         <hr>
 
 
-        {% if brands is not empty %}
+        {% if available_brands is not empty %}
             <p>Here are the brands available at {{ store.getStoreName }}:</p>
             <ul>
-                {% for brand in brands %}
+                {% for brand in available_brands %}
                     <li>{{ brand.getBrandName }}</li>
                 {% endfor %}
             </ul>
@@ -21,7 +21,7 @@
 
         {% if brands is not empty %}
         <h4>Add a brand:</h4>
-        <form action="/add_brand" method="post">
+        <form action="/add_brand/{id}" method="post">
             <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
             <label for = "brand_id">Select a brand:</label>
             <select id='brand_id' name='brand_id' type='text'>
@@ -31,11 +31,10 @@
             </select>
             <button type="submit">Add brand</button>
         </form>
-        <br>
         {% else %}
         <p>There are currently no brands available. You can add a new brand <a href='add_brand'>here</a>.
         {% endif %}
-
+        <br>
 
         <h4>Edit this Store Name:</h4>
             <form action="/store/{{ store.getId }}" method="post">
