@@ -67,8 +67,8 @@
             $this->assertEquals([], $result);
         }
 
-//links a specfic instance of store to a specific instance of shoe brand
-        function testAddStore()
+//test for addStore()
+        function test_addStore()
         {
             $brand_name = 'Nike';
             $test_brand = new Brand($brand_name);
@@ -83,8 +83,8 @@
             $this->assertEquals($test_brand->getStore(), [$test_store]);
         }
 
-//retrieves all stores associated with a specific instance of brand
-        function testGetStore()
+//test for getStore()
+        function test_getStore()
         {
             $brand_name = 'Nike';
             $test_brand = new Brand($brand_name);

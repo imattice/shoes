@@ -55,5 +55,38 @@
             $GLOBALS['DB']->exec("DELETE FROM brands_table;");
         }
 
+//links a specific instance of Brand to a specific instance of Store
+        function addStore($store)
+        {
+            //goes into the join table and adds the id of the current instance of brand next to the store that is called into the function
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
+        }
+
+//retrieves all stores associated with a specific instance of brand
+        function getStore()
+        {
+            //join statement which starts at brands_table and links each table by id's, one table at a time, resulting in a list of stores that are associated with this brand.  Needs a foreach loop to pull out the individual stores and recreate them into Store objects.
+            $returned_stores = $GLOBALS['DB']->query("SELECT stores_table.* FROM brands_table
+                JOIN brands_stores ON (brands_table.id = brands_stores.brand_id)
+                JOIN stores_table ON (brands_stores.store_id = stores_table.id)
+                WHERE brands_table.id = {$this->getId()};");
+
+            //creates empty array to insert the linked store information
+            $stores = array();
+
+            //goes through the associated array created by the join statement and builds a new store object from that information
+            foreach ($returned_stores as $store) {
+                $store_name = $store['name'];
+                $id = $store['id'];
+                $new_store = new Store($store_name, $id);
+
+                //pushes the newly created store objects to the empty array
+                array_push($stores, $new_store);
+            }
+            
+            //returns the newly filled array with the resulting store objects
+            return $stores;
+        }
+
     }
 ?>
